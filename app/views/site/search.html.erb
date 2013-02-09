@@ -1,0 +1,14 @@
+College: <%= @college.name%><br>
+Branch: <%if(@branch) %>
+	<%=@branch.name %>
+<%end%><br>
+
+<% @cutoffs.each do |cutoff| %>
+
+	Caste:	<%= cutoff.caste%><br>
+	Round: <%= cutoff.round%><br>
+	College: <%=cutoff.branch.college.name%><br>
+	Shift: <%= cutoff.shift%><br>
+<%end%>
+
+

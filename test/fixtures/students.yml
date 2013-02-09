@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  caste: 
+  aieee_rank: 
+  sml_number: 
+  uml_number: 
+  university: 
+  aieee_score: 
+  mhcet_score: 
+  caste_rank: 
+
+two:
+  caste: 
+  aieee_rank: 
+  sml_number: 
+  uml_number: 
+  university: 
+  aieee_score: 
+  mhcet_score: 
+  caste_rank: 

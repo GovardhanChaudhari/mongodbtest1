@@ -1,0 +1,49 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :caste %><br />
+    <%= f.text_field :caste %>
+  </div>
+  <div class="field">
+    <%= f.label :aieee_rank %><br />
+    <%= f.text_field :aieee_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :sml_number %><br />
+    <%= f.text_field :sml_number %>
+  </div>
+  <div class="field">
+    <%= f.label :uml_number %><br />
+    <%= f.text_field :uml_number %>
+  </div>
+  <div class="field">
+    <%= f.label :university %><br />
+    <%= f.text_field :university %>
+  </div>
+  <div class="field">
+    <%= f.label :aieee_score %><br />
+    <%= f.text_field :aieee_score %>
+  </div>
+  <div class="field">
+    <%= f.label :mhcet_score %><br />
+    <%= f.text_field :mhcet_score %>
+  </div>
+  <div class="field">
+    <%= f.label :caste_rank %><br />
+    <%= f.text_field :caste_rank %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

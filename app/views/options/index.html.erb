@@ -1,0 +1,27 @@
+<h1>Listing options</h1>
+
+<table>
+  <tr>
+    <th>College name</th>
+    <th>Branch</th>
+    <th>Attempt</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @options.each do |option| %>
+  <tr>
+    <td><%= option.college_name %></td>
+    <td><%= option.branch %></td>
+    <td><%= option.attempt_id %></td>
+    <td><%= link_to 'Show', option %></td>
+    <td><%= link_to 'Edit', edit_option_path(option) %></td>
+    <td><%= link_to 'Destroy', option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Option', new_option_path %>

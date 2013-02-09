@@ -1,0 +1,12 @@
+welcome to mongodb test1
+<br>
+
+<%= link_to "upload", "/showupload"%>
+
+<%=form_tag("/search",:method=>"get	") do	%>
+	College Name: <%= select_tag("college_id", options_for_select(College.all.map{|c| [c.name,c.id] }))%><br>
+	Branch Name: <%= select_tag("branch_id", options_for_select(Branch.all.map{|b| [b.name,b.name]}))%><br>
+	Caste: <%= select_tag("caste",options_for_select(Cutoff.all.map{|co| [co.caste,co.caste]}.uniq))%><br>
+	Round: <%= select_tag("round",options_for_select([["I","I"],["II","II"]]))%><br>
+	<%= submit_tag("Search") %>
+<%end%>

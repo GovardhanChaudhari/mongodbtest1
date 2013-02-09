@@ -1,0 +1,69 @@
+<%= form_for(@cutoff) do |f| %>
+  <% if @cutoff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cutoff.errors.count, "error") %> prohibited this cutoff from being saved:</h2>
+
+      <ul>
+      <% @cutoff.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :round %><br />
+    <%= f.text_field :round %>
+  </div>
+  <div class="field">
+    <%= f.label :caste %><br />
+    <%= f.text_field :caste %>
+  </div>
+  <div class="field">
+    <%= f.label :male_score %><br />
+    <%= f.text_field :male_score %>
+  </div>
+  <div class="field">
+    <%= f.label :female_score %><br />
+    <%= f.text_field :female_score %>
+  </div>
+  <div class="field">
+    <%= f.label :male_sml_rank %><br />
+    <%= f.text_field :male_sml_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :female_sml_rank %><br />
+    <%= f.text_field :female_sml_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :aieee_rank %><br />
+    <%= f.text_field :aieee_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :aieee_score %><br />
+    <%= f.text_field :aieee_score %>
+  </div>
+  <div class="field">
+    <%= f.label :shift %><br />
+    <%= f.text_field :shift %>
+  </div>
+  <div class="field">
+    <%= f.label :male_score_ou %><br />
+    <%= f.text_field :male_score_ou %>
+  </div>
+  <div class="field">
+    <%= f.label :male_sml_rank_ou %><br />
+    <%= f.text_field :male_sml_rank_ou %>
+  </div>
+  <div class="field">
+    <%= f.label :female_score_ou %><br />
+    <%= f.text_field :female_score_ou %>
+  </div>
+  <div class="field">
+    <%= f.label :female_sml_rank_ou %><br />
+    <%= f.text_field :female_sml_rank_ou %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Caste:</b>
+  <%= @student.caste %>
+</p>
+
+<p>
+  <b>Aieee rank:</b>
+  <%= @student.aieee_rank %>
+</p>
+
+<p>
+  <b>Sml number:</b>
+  <%= @student.sml_number %>
+</p>
+
+<p>
+  <b>Uml number:</b>
+  <%= @student.uml_number %>
+</p>
+
+<p>
+  <b>University:</b>
+  <%= @student.university %>
+</p>
+
+<p>
+  <b>Aieee score:</b>
+  <%= @student.aieee_score %>
+</p>
+
+<p>
+  <b>Mhcet score:</b>
+  <%= @student.mhcet_score %>
+</p>
+
+<p>
+  <b>Caste rank:</b>
+  <%= @student.caste_rank %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

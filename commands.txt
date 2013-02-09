@@ -1,0 +1,11 @@
+rails g scaffold student caste:String aieee_rank:Integer sml_number:Ingeger uml_number:Integer university:String aieee_score:Integer mhcet_score:Integer caste_rank:Integer
+
+rails g scaffold cutoff round:String caste:String male_score:Integer female_score:Integer male_sml_rank:Integer female_sml_rank:Integer aieee_rank:Integer aieee_score:Integer shift:String male_score_ou:Integer male_sml_rank_ou:Integer female_score_ou:Integer female_sml_rank_ou:Integer
+
+rails g scaffold branch name:String 
+
+rails g scaffold college name:String code:String area:String city:String
+
+rails g scaffold option college_name:String branch:String attempt_id:String
+
+rails g scaffold attempt score:Integer subscription_id:String 

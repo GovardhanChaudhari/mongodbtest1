@@ -1,0 +1,47 @@
+<h1>Listing cutoffs</h1>
+
+<table>
+  <tr>
+    <th>Round</th>
+    <th>Caste</th>
+    <th>Male score</th>
+    <th>Female score</th>
+    <th>Male sml rank</th>
+    <th>Female sml rank</th>
+    <th>Aieee rank</th>
+    <th>Aieee score</th>
+    <th>Shift</th>
+    <th>Male score ou</th>
+    <th>Male sml rank ou</th>
+    <th>Female score ou</th>
+    <th>Female sml rank ou</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cutoffs.each do |cutoff| %>
+  <tr>
+    <td><%= cutoff.round %></td>
+    <td><%= cutoff.caste %></td>
+    <td><%= cutoff.male_score %></td>
+    <td><%= cutoff.female_score %></td>
+    <td><%= cutoff.male_sml_rank %></td>
+    <td><%= cutoff.female_sml_rank %></td>
+    <td><%= cutoff.aieee_rank %></td>
+    <td><%= cutoff.aieee_score %></td>
+    <td><%= cutoff.shift %></td>
+    <td><%= cutoff.male_score_ou %></td>
+    <td><%= cutoff.male_sml_rank_ou %></td>
+    <td><%= cutoff.female_score_ou %></td>
+    <td><%= cutoff.female_sml_rank_ou %></td>
+    <td><%= link_to 'Show', cutoff %></td>
+    <td><%= link_to 'Edit', edit_cutoff_path(cutoff) %></td>
+    <td><%= link_to 'Destroy', cutoff, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cutoff', new_cutoff_path %>

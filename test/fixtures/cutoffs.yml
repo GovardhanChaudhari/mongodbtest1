@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  round: 
+  caste: 
+  male_score: 
+  female_score: 
+  male_sml_rank: 
+  female_sml_rank: 
+  aieee_rank: 
+  aieee_score: 
+  shift: 
+  male_score_ou: 
+  male_sml_rank_ou: 
+  female_score_ou: 
+  female_sml_rank_ou: 
+
+two:
+  round: 
+  caste: 
+  male_score: 
+  female_score: 
+  male_sml_rank: 
+  female_sml_rank: 
+  aieee_rank: 
+  aieee_score: 
+  shift: 
+  male_score_ou: 
+  male_sml_rank_ou: 
+  female_score_ou: 
+  female_sml_rank_ou: 
