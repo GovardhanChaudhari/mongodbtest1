@@ -10,6 +10,8 @@ class Student
   field :aieee_score, type: Integer
   field :mhcet_score, type: Integer
   field :caste_rank, type: Integer
+  field :gender, type: String
+  
   
   has_many :subscriptions
   

@@ -18,7 +18,7 @@ class StudentsControllerTest < ActionController::TestCase
 
   test "should create student" do
     assert_difference('Student.count') do
-      post :create, student: { aieee_rank: @student.aieee_rank, aieee_score: @student.aieee_score, caste: @student.caste, caste_rank: @student.caste_rank, mhcet_score: @student.mhcet_score, sml_number: @student.sml_number, uml_number: @student.uml_number, university: @student.university }
+      post :create, student: { aieee_rank: @student.aieee_rank, aieee_score: @student.aieee_score, caste: @student.caste, caste_rank: @student.caste_rank, gender: @student.gender, mhcet_score: @student.mhcet_score, sml_number: @student.sml_number, uml_number: @student.uml_number, university: @student.university }
     end
 
     assert_redirected_to student_path(assigns(:student))
@@ -35,7 +35,7 @@ class StudentsControllerTest < ActionController::TestCase
   end
 
   test "should update student" do
-    put :update, id: @student, student: { aieee_rank: @student.aieee_rank, aieee_score: @student.aieee_score, caste: @student.caste, caste_rank: @student.caste_rank, mhcet_score: @student.mhcet_score, sml_number: @student.sml_number, uml_number: @student.uml_number, university: @student.university }
+    put :update, id: @student, student: { aieee_rank: @student.aieee_rank, aieee_score: @student.aieee_score, caste: @student.caste, caste_rank: @student.caste_rank, gender: @student.gender, mhcet_score: @student.mhcet_score, sml_number: @student.sml_number, uml_number: @student.uml_number, university: @student.university }
     assert_redirected_to student_path(assigns(:student))
   end
 

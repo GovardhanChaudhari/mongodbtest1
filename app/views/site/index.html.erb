@@ -7,6 +7,9 @@ welcome to mongodb test1
 	College Name: <%= select_tag("college_id", options_for_select(College.all.map{|c| [c.name,c.id] }))%><br>
 	Branch Name: <%= select_tag("branch_id", options_for_select(Branch.all.map{|b| [b.name,b.name]}))%><br>
 	Caste: <%= select_tag("caste",options_for_select(Cutoff.all.map{|co| [co.caste,co.caste]}.uniq))%><br>
-	Round: <%= select_tag("round",options_for_select([["I","I"],["II","II"]]))%><br>
+	Round: <%= select_tag("round",options_for_select(ROUND_NAMES,ROUND_NAMES))%><br>
+	Exam Type: <%= select_tag("exam_type",options_for_select(EXAM_TYPES,EXAM_TYPES))%><br>
+	Mark_type: <%= select_tag("mark_type",options_for_select(MARK_TYPES,MARK_TYPES))%><br>
+	Value: <%= text_field_tag ("score_value")%><br>
 	<%= submit_tag("Search") %>
 <%end%>

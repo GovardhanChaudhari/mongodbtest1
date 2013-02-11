@@ -9,6 +9,7 @@ one:
   aieee_score: 
   mhcet_score: 
   caste_rank: 
+  gender: 
 
 two:
   caste: 
@@ -19,3 +20,4 @@ two:
   aieee_score: 
   mhcet_score: 
   caste_rank: 
+  gender: 

@@ -1,3 +1,7 @@
+Found Cutoff aieee rank: <%= @foundcutoff.aieee_rank%><br>
+Found Cutoff aieee score: <%= @foundcutoff.aieee_score%><br>
+Found cutoff sml: <%= @foundcutoff.male_sml_rank%><br>
+Found Cutoff mhcet score: <%= @foundcutoff.male_score%><br>
 College: <%= @college.name%><br>
 Branch: <%if(@branch) %>
 	<%=@branch.name %>
@@ -9,6 +13,7 @@ Branch: <%if(@branch) %>
 	Round: <%= cutoff.round%><br>
 	College: <%=cutoff.branch.college.name%><br>
 	Shift: <%= cutoff.shift%><br>
+	Aieee rank: <%= cutoff.aieee_rank%>
 <%end%>
 
 
