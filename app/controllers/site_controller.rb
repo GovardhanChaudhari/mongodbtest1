@@ -106,18 +106,18 @@ class SiteController < ApplicationController
 			
 			if(student.gender == "Male")
 				if(search_hash[:exam_type] == "MHCET")
-					if (search_hash[:marks_type == "Score"])
-						cutoff_filter[:male_score.lte => search_hash[:score_value]]		
+					if (search_hash[:marks_type] == "Score")
+						cutoff_filter[:male_score.lte] = search_hash[:score_value]		
 					else
-						cutoff_filter[:male_sml_rank.gte => search_hash[:score_value]]
+						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value]
 						#TODO
 					end
 				else
-					if(search_hash[:marks_type == "Score"])
-						cutoff_filter[:aieee_score.lte => search_hash[:score_value]]
+					if(search_hash[:marks_type] == "Score")
+						cutoff_filter[:aieee_score.lte] = search_hash[:score_value]
 						#TODO
 					else
-						cutoff_filter[:aieee_rank.gte => search_hash[:score_value]]
+						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value]
 					end
 				end
 			else

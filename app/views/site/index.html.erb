@@ -9,7 +9,7 @@ welcome to mongodb test1
 	Caste: <%= select_tag("caste",options_for_select(Cutoff.all.map{|co| [co.caste,co.caste]}.uniq))%><br>
 	Round: <%= select_tag("round",options_for_select(ROUND_NAMES,ROUND_NAMES))%><br>
 	Exam Type: <%= select_tag("exam_type",options_for_select(EXAM_TYPES,EXAM_TYPES))%><br>
-	Mark_type: <%= select_tag("mark_type",options_for_select(MARK_TYPES,MARK_TYPES))%><br>
+	Mark_type: <%= select_tag("marks_type",options_for_select(MARK_TYPES,MARK_TYPES))%><br>
 	Value: <%= text_field_tag ("score_value")%><br>
 	<%= submit_tag("Search") %>
 <%end%>
