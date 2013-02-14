@@ -1,11 +1,18 @@
-Found Cutoff aieee rank: <%= @foundcutoff.aieee_rank%><br>
-Found Cutoff aieee score: <%= @foundcutoff.aieee_score%><br>
-Found cutoff sml: <%= @foundcutoff.male_sml_rank%><br>
-Found Cutoff mhcet score: <%= @foundcutoff.male_score%><br>
-College: <%= @college.name%><br>
-Branch: <%if(@branch) %>
-	<%=@branch.name %>
-<%end%><br>
+
+<% if (@foundcutoff) %>
+
+	Found Cutoff aieee rank: <%= @foundcutoff.aieee_rank%><br>
+	Found Cutoff aieee score: <%= @foundcutoff.aieee_score%><br>
+	Found cutoff sml: <%= @foundcutoff.male_sml_rank%><br>
+	Found Cutoff mhcet score: <%= @foundcutoff.male_score%><br>
+	College: <%= @college.name%><br>
+	Branch: <%if(@branch) %>
+		<%=@branch.name %>
+	<%end%><br>
+
+<%else%>
+	No College found 
+<%end%>
 
 <% @cutoffs.each do |cutoff| %>
 

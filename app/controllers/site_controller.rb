@@ -22,7 +22,7 @@ class SiteController < ApplicationController
 		require 'csv'
 		filerootpath = "#{Rails.root}/files/csv/" 
 		Dir.entries(filerootpath).each do |filename|
-			if (!File.directory?(filename))
+			if (!File.directory?(filename) and File.extname(filename) == ".csv")
 				filepath = "#{filerootpath}/#{filename}"
 				CSV.foreach(filepath) do |row|
 					if(row[0] != "College code" && row[0] != nil)
@@ -105,6 +105,8 @@ class SiteController < ApplicationController
 			#@cutoffs = @branch.cutoffs.where()
 			
 			if(student.gender == "Male")
+				#cutoff_filter = get_filter_score_and_rank(search_hash[:exam_type],search_hash[:marks_type],search_hash)
+				gender = "male"
 				if(search_hash[:exam_type] == "MHCET")
 					if (search_hash[:marks_type] == "Score")
 						cutoff_filter[:male_score.lte] = search_hash[:score_value]		
@@ -132,5 +134,8 @@ class SiteController < ApplicationController
 		
 		@foundcutoff = @cutoffs.first
 	end
+	
+	
+#2013021215148	
 	
 end
