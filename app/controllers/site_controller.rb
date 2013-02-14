@@ -89,7 +89,7 @@ class SiteController < ApplicationController
 		student = Student.first
 	
 		Rails.logger.info "College id: #{params[:college_id]}"
-		search_hash = {:college_id => params[:college_id],:branch=> params[:branch_id],:round => params[:round],:caste=>student.caste,:exam_type => params[:exam_type],:marks_type=>params[:marks_type],:score_value => params[:score_value]}
+		search_hash = {:college_id => params[:college_id],:branch=> params[:branch_id],:round => params[:round],:caste=>student.caste,:exam_type => params[:exam_type],:marks_type=>params[:marks_type],:score_value_from => params[:score_value_from],:score_value_to => params[:score_value_to]}
 		
 		
 		
@@ -101,15 +101,17 @@ class SiteController < ApplicationController
 		
 		if(@branch)
 			Rails.logger.info "******** found branch"
-			cutoff_filter = {:caste => search_hash[:caste],:round => search_hash[:round]}
-			#@cutoffs = @branch.cutoffs.where()
-			
+			cutoff_filter_fixed = {:caste => search_hash[:caste],:round => search_hash[:round]}
+			@cutoffs = @branch.cutoffs.where(cutoff_filter_fixed)
+			cutoff_filter = {}
+			cutoff_filter1 = {}
 			if(student.gender == "Male")
 				#cutoff_filter = get_filter_score_and_rank(search_hash[:exam_type],search_hash[:marks_type],search_hash)
 				gender = "male"
 				if(search_hash[:exam_type] == "MHCET")
 					if (search_hash[:marks_type] == "Score")
-						cutoff_filter[:male_score.lte] = search_hash[:score_value]		
+						cutoff_filter[:male_score.lte] = search_hash[:score_value_from]
+						cutoff_filter1[:male_score.lte] = search_hash[:score_value_to]				
 					else
 						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value]
 					end
@@ -136,7 +138,7 @@ class SiteController < ApplicationController
 				end	
 			end
 			Rails.logger.info "*********** Cutoff Filter : #{cutoff_filter}"
-			@cutoffs = @branch.cutoffs.where(cutoff_filter)	
+			@cutoffs = @cutoffs.any_of(cutoff_filter,cutoff_filter1)	
 		else
 			Rails.logger.info "******** branch not found"
 			@cutoffs = []	

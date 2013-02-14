@@ -9,6 +9,7 @@ welcome to mongodb test1
 	Round: <%= select_tag("round",options_for_select(ROUND_NAMES,ROUND_NAMES))%><br>
 	Exam Type: <%= select_tag("exam_type",options_for_select(EXAM_TYPES,EXAM_TYPES))%><br>
 	Mark_type: <%= select_tag("marks_type",options_for_select(MARK_TYPES,MARK_TYPES))%><br>
-	Value: <%= text_field_tag ("score_value")%><br>
+	From : <%= text_field_tag ("score_value_from")%><br>
+	To: <%= text_field_tag("score_value_to")%><br>
 	<%= submit_tag("Search") %>
 <%end%>
