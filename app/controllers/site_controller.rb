@@ -3,6 +3,15 @@ class SiteController < ApplicationController
 
 	def index
 		@collges = College.all
+		@student = Student.first
+		@student.subscriptions.create
+		subscription = @student.subscriptions.first
+		attempt = subscription.attempts.create()
+		5.times do
+			attempt.options.create
+		end
+		@options = attempt.options
+		@attempt_id = attempt.id
 	end
 
 	def showupload
@@ -86,62 +95,75 @@ class SiteController < ApplicationController
 	
 	def search
 	
+		attempt = Attempt.find_by(:id => params[:attempt_id])
 		student = Student.first
-	
-		Rails.logger.info "College id: #{params[:college_id]}"
-		search_hash = {:college_id => params[:college_id],:branch=> params[:branch_id],:round => params[:round],:caste=>student.caste,:exam_type => params[:exam_type],:marks_type=>params[:marks_type],:score_value_from => params[:score_value_from],:score_value_to => params[:score_value_to]}
+		@found_colleges = []		
+		attempt.options.to_a.each_index do |index|
+				college_id = "college_id_option_" + index.to_s
+				branch_name = "branch_name_option_" + index.to_s
+				round = "round_option_" + index.to_s
+				Rails.logger.info "*******************option college: " + params[college_id]
+		
+				#Rails.logger.info "College id: #{params[:college_id]}"
+			search_hash = {:college_id => params[college_id],:branch=> params[branch_name],:round => params[round],:caste=>student.caste,:exam_type => params[:exam_type],:marks_type=>params[:marks_type],:score_value_from => params[:score_value_from],:score_value_to => params[:score_value_to]}
 		
 		
 		
-		@college = College.find_by(:id=> search_hash[:college_id])
+			@college = College.find_by(:id=> search_hash[:college_id])
 		
-		Rails.logger.info "College Name: #{@college.name}"
+			Rails.logger.info "College Name: #{@college.name}"
 		
-		@branch = @college.branches.where(:name => search_hash[:branch]).first
+			@branch = @college.branches.where(:name => search_hash[:branch]).first
 		
-		if(@branch)
-			Rails.logger.info "******** found branch"
-			cutoff_filter = {:caste => search_hash[:caste],:round => search_hash[:round]}
-			#@cutoffs = @branch.cutoffs.where(cutoff_filter_fixed)
-			if(student.gender == "Male")
-				#cutoff_filter = get_filter_score_and_rank(search_hash[:exam_type],search_hash[:marks_type],search_hash)
-				gender = "male"
-				if(search_hash[:exam_type] == "MHCET")
-					if (search_hash[:marks_type] == "Score")
-						cutoff_filter[:male_score.lte] = search_hash[:score_value_to]				
+			if(@branch)
+				Rails.logger.info "******** found branch"
+				cutoff_filter = {:caste => search_hash[:caste],:round => search_hash[:round]}
+				#@cutoffs = @branch.cutoffs.where(cutoff_filter_fixed)
+				if(student.gender == "Male")
+					#cutoff_filter = get_filter_score_and_rank(search_hash[:exam_type],search_hash[:marks_type],search_hash)
+					gender = "male"
+					if(search_hash[:exam_type] == "MHCET")
+						if (search_hash[:marks_type] == "Score")
+							cutoff_filter[:male_score.lte] = search_hash[:score_value_to]				
+						else
+							cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value_to]
+						end
 					else
-						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value_to]
+						if(search_hash[:marks_type] == "Score")
+							cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
+						else
+							cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
+						end
 					end
 				else
-					if(search_hash[:marks_type] == "Score")
-						cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
+					if(search_hash[:exam_type] == "MHCET")
+						if (search_hash[:marks_type] == "Score")
+							cutoff_filter[:female_score.lte] = search_hash[:score_value_to]		
+						else
+							cutoff_filter[:female_sml_rank.gte] = search_hash[:score_value_to]
+						end
 					else
-						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
-					end
+						if(search_hash[:marks_type] == "Score")
+							cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
+						else
+							cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
+						end
+					end	
 				end
+				Rails.logger.info "*********** Cutoff Filter : #{cutoff_filter}"
+				@cutoffs = @branch.cutoffs.where(cutoff_filter)	
 			else
-				if(search_hash[:exam_type] == "MHCET")
-					if (search_hash[:marks_type] == "Score")
-						cutoff_filter[:female_score.lte] = search_hash[:score_value_to]		
-					else
-						cutoff_filter[:female_sml_rank.gte] = search_hash[:score_value_to]
-					end
-				else
-					if(search_hash[:marks_type] == "Score")
-						cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
-					else
-						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
-					end
-				end	
-			end
-			Rails.logger.info "*********** Cutoff Filter : #{cutoff_filter}"
-			@cutoffs = @branch.cutoffs.where(cutoff_filter)	
-		else
-			Rails.logger.info "******** branch not found"
-			@cutoffs = []	
-		end	
+				Rails.logger.info "******** branch not found"
+				@cutoffs = []	
+			end	
 		
-		@foundcutoff = @cutoffs.first
+			@foundcutoff = @cutoffs.first
+			if(@foundcutoff)
+				@found_colleges.push @foundcutoff.branch.college.name
+			end
+				@found_colleges = @found_colleges.uniq
+			Rails.logger.info "******************Found Colleges: #{@found_colleges.inspect}"
+		end
 	end
 	
 	

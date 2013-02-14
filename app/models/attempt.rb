@@ -9,5 +9,6 @@ class Attempt
   
   has_many :results , :class_name => "Option"
   
+  belongs_to :subscription
   
 end

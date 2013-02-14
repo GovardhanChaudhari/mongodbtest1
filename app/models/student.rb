@@ -1,4 +1,4 @@
-class Student
+class Student < User
   include Mongoid::Document
   include Mongoid::Timestamps
   

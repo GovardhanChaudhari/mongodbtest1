@@ -1,4 +1,6 @@
 Mongodbtest1::Application.routes.draw do
+  resources :users
+
   resources :subscriptions
 
   resources :attempts
