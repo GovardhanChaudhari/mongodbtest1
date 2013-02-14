@@ -101,44 +101,41 @@ class SiteController < ApplicationController
 		
 		if(@branch)
 			Rails.logger.info "******** found branch"
-			cutoff_filter_fixed = {:caste => search_hash[:caste],:round => search_hash[:round]}
-			@cutoffs = @branch.cutoffs.where(cutoff_filter_fixed)
-			cutoff_filter = {}
-			cutoff_filter1 = {}
+			cutoff_filter = {:caste => search_hash[:caste],:round => search_hash[:round]}
+			#@cutoffs = @branch.cutoffs.where(cutoff_filter_fixed)
 			if(student.gender == "Male")
 				#cutoff_filter = get_filter_score_and_rank(search_hash[:exam_type],search_hash[:marks_type],search_hash)
 				gender = "male"
 				if(search_hash[:exam_type] == "MHCET")
 					if (search_hash[:marks_type] == "Score")
-						cutoff_filter[:male_score.lte] = search_hash[:score_value_from]
-						cutoff_filter1[:male_score.lte] = search_hash[:score_value_to]				
+						cutoff_filter[:male_score.lte] = search_hash[:score_value_to]				
 					else
-						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value]
+						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value_to]
 					end
 				else
 					if(search_hash[:marks_type] == "Score")
-						cutoff_filter[:aieee_score.lte] = search_hash[:score_value]
+						cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
 					else
-						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value]
+						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
 					end
 				end
 			else
 				if(search_hash[:exam_type] == "MHCET")
 					if (search_hash[:marks_type] == "Score")
-						cutoff_filter[:female_score.lte] = search_hash[:score_value]		
+						cutoff_filter[:female_score.lte] = search_hash[:score_value_to]		
 					else
-						cutoff_filter[:female_sml_rank.gte] = search_hash[:score_value]
+						cutoff_filter[:female_sml_rank.gte] = search_hash[:score_value_to]
 					end
 				else
 					if(search_hash[:marks_type] == "Score")
-						cutoff_filter[:aieee_score.lte] = search_hash[:score_value]
+						cutoff_filter[:aieee_score.lte] = search_hash[:score_value_to]
 					else
-						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value]
+						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value_to]
 					end
 				end	
 			end
 			Rails.logger.info "*********** Cutoff Filter : #{cutoff_filter}"
-			@cutoffs = @cutoffs.any_of(cutoff_filter,cutoff_filter1)	
+			@cutoffs = @branch.cutoffs.where(cutoff_filter)	
 		else
 			Rails.logger.info "******** branch not found"
 			@cutoffs = []	
