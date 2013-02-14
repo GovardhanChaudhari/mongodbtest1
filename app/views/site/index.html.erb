@@ -2,10 +2,9 @@ welcome to mongodb test1
 <br>
 
 <%= link_to "upload", "/showupload"%>
-
 <%=form_tag("/search",:method=>"get	") do	%>
 	College Name: <%= select_tag("college_id", options_for_select(College.all.map{|c| [c.name,c.id] }))%><br>
-	Branch Name: <%= select_tag("branch_id", options_for_select(Branch.all.map{|b| [b.name,b.name]}))%><br>
+	Branch Name: <%= select_tag("branch_id", options_for_select(Branch.all.map{|b| [b.name,b.name]}.uniq))%><br>
 	Caste: <%= select_tag("caste",options_for_select(Cutoff.all.map{|co| [co.caste,co.caste]}.uniq))%><br>
 	Round: <%= select_tag("round",options_for_select(ROUND_NAMES,ROUND_NAMES))%><br>
 	Exam Type: <%= select_tag("exam_type",options_for_select(EXAM_TYPES,EXAM_TYPES))%><br>

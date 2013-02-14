@@ -112,18 +112,28 @@ class SiteController < ApplicationController
 						cutoff_filter[:male_score.lte] = search_hash[:score_value]		
 					else
 						cutoff_filter[:male_sml_rank.gte] = search_hash[:score_value]
-						#TODO
 					end
 				else
 					if(search_hash[:marks_type] == "Score")
 						cutoff_filter[:aieee_score.lte] = search_hash[:score_value]
-						#TODO
 					else
 						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value]
 					end
 				end
 			else
-				# TODO	
+				if(search_hash[:exam_type] == "MHCET")
+					if (search_hash[:marks_type] == "Score")
+						cutoff_filter[:female_score.lte] = search_hash[:score_value]		
+					else
+						cutoff_filter[:female_sml_rank.gte] = search_hash[:score_value]
+					end
+				else
+					if(search_hash[:marks_type] == "Score")
+						cutoff_filter[:aieee_score.lte] = search_hash[:score_value]
+					else
+						cutoff_filter[:aieee_rank.gte] = search_hash[:score_value]
+					end
+				end	
 			end
 			Rails.logger.info "*********** Cutoff Filter : #{cutoff_filter}"
 			@cutoffs = @branch.cutoffs.where(cutoff_filter)	
